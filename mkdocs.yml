@@ -1,0 +1,14 @@
+site_name: Wing Blender Documentation
+site_author: Kevin Caccamo
+repo_url: https://github.com/Talon1024/WCPBlenderExporter
+repo_name: 'GitHub'
+copyright: © 2016 Kevin Caccamo
+pages:
+- Home: index.md
+- Usage:
+  - 'Exporting a model': export.md
+  - 'Importing a model': import.md
+- Contributing: contrib.md
+- Showcase: showcase.md
+markdown_extensions:
+- attr_list
