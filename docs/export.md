@@ -11,17 +11,25 @@ Setting up a model
 In order for a model to be considered valid for export, it must meet these criteria:
 
 1. All models must have a LOD 0 object.
-2. All LOD objects for a particular model must be mesh objects.
+2. All LOD objects for a particular model must be mesh or empty objects.
 3. Each LOD object must be visible in Blender's viewport.
 4. All LODs of the model must be named `detail-X`, `detailX`, or `Y-lodX`,
    where X is the LOD level of the object, and Y is the name of the object.
 5. All LODs of the model must have the same parent.
 
-Note that the `detailX` and `detail-X` naming schemes are deprecated, and should
-only be used with caution. These naming schemes were originally intended to be
-used for the root object. Exporting a model using these naming schemes has not
-been extensively tested. You may get errors or otherwise unexpected results if
-you use these naming schemes!
+If you choose to export only the active object, the active object's name will be
+checked to see if it has a `detail-x` or `Y-lodX` name scheme. If it does, it is used
+as the corresponding LOD for the respective model. If it does not, it is used as
+the LOD 0 object, and any other objects matching its name, but suffixed with `-lodX`
+are used as its LODs.
+
+Note that the `detailX` and `detail-X` naming schemes are deprecated, and can
+only be used once per object hierarchy. If this name scheme is used at all, it
+will override the position of the export filename in the exported model filenames.
+
+For example, if you have `detail-0` as the child of `duhiky-lod0`, the exported model
+for `detail-0` will be named `duhiky_Mything.iff`, whereas it would otherwise be
+named `Mything_foo.iff` if the object named `detail-0` had been named `foo-lod0`.
 
 Customizing Model Metadata
 --------------------------
