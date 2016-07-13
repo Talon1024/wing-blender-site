@@ -29,6 +29,8 @@ Customizing Model Metadata
 There are several customizations you can make to your model using empty objects
 parented to LOD objects and object custom properties.
 
+![Custom properties](images/CustomProperties_b.png)
+
 ### LOD Ranges ###
 To customize the range that a particular LOD is visible at, you can either:
 
