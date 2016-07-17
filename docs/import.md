@@ -19,8 +19,9 @@ Obtaining a model to import
 You need a model from Wing Commander: Prophecy/Secret Ops in order to be able
 to import it with Wing Blender.
 
-You can use [HCl](http://hcl.solsector.net)'s [treman]() tool to extract the
-models from Wing Commander: Prophecy/Secret Ops or your favourite WCP/SO mod.
+You can use [HCl](http://hcl.solsector.net)'s [treman](http://hcl.solsector.net/archive/treman1.zip) tool to extract the
+models from Wing Commander: Prophecy/Secret Ops or your favourite WCP/SO mod. If treman does not run on your system, download
+[CWSDPMI](http://web.archive.org/web/20150817040602/http://homer.rice.edu/~sandmann/cwsdpmi/index.html), put it in the same folder as `treman`, and run `treman` in [DOSBox](www.dosbox.com).
 
 Simply go to File -> Import -> WCP/SO IFF Mesh File (.iff), and choose the model
 you want to import.
