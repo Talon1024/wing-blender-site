@@ -50,15 +50,18 @@ To customize the range that a particular LOD is visible at, you can either:
 
 A few things to note:
 
-1. If the LOD range has a decimal point, remember to replace the point with a
-   comma! For example, the name of a LOD range object where the LOD range is
-   300.5 should be `drange=300,5`.
+1. If you are using an empty `drange` object, and the LOD range has a decimal
+   point, remember to replace the point with a comma! For example, the name
+   of a LOD range object where the LOD range is 300.5 should be `drange=300,5`.
 
    I've set things up this way because Blender likes to stick `.000` or `.001`
    at the end of the names of objects with conflicting names. Any such suffixes
    are discarded.
 
-2. The `drange` custom property takes precedence over any LOD range objects that
+2. You do not have to use a comma in place of the decimal point if you are using
+   the `drange` custom property to set the LOD range for a particular LOD.
+
+3. The `drange` custom property takes precedence over any LOD range objects that
    are parented to a particular LOD. So, if you have an object named `Duhiky-lod1`
    with both a `drange` custom property and a child object named `drange=300,5`,
    the value of the `drange` custom property will be used rather than the drange
@@ -90,6 +93,10 @@ model(s) match the orientation of your hardpoint object as closely as possible.
 If you are using "Arrows" as the hardpoint object's display mode, the "Y" arrow
 should match the forward orientation of the hardpoint, and the "Z" arrow should
 match the upward orientation of the hardpoint.
+
+Wing Blender also ensures there are no hardpoints with conflicting names on
+the same model, and it will give you an error if it detects a hardpoint name
+conflict.
 
 Hardpoints from all LODs are included in the exported model(s). If a hardpoint
 object is hidden, it will not be included in the exported model(s). Like
