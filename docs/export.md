@@ -11,23 +11,33 @@ Setting up a model
 In order for a model to be considered valid for export, it must meet these criteria:
 
 1. All models must have a LOD 0 object.
-2. All LOD objects for a particular model must be mesh objects.
+2. All LOD objects for a particular model must be mesh or empty objects.
 3. Each LOD object must be visible in Blender's viewport.
 4. All LODs of the model must be named `detail-X`, `detailX`, or `Y-lodX`,
    where X is the LOD level of the object, and Y is the name of the object.
 5. All LODs of the model must have the same parent.
 
-Note that the `detailX` and `detail-X` naming schemes are deprecated, and should
-only be used with caution. These naming schemes were originally intended to be
-used for the root object. Exporting a model using these naming schemes has not
-been extensively tested. You may get errors or otherwise unexpected results if
-you use these naming schemes!
+If you choose to export only the active object, the active object's name will be
+checked to see if it has a `detail-x` or `Y-lodX` name scheme. If it does, it is used
+as the corresponding LOD for the respective model. If it does not, it is used as
+the LOD 0 object, and any other objects matching its name, but suffixed with `-lodX`
+are used as its LODs.
+
+Note that the `detailX` and `detail-X` naming schemes are deprecated, and can
+only be used once per object hierarchy. If this name scheme is used at all, it
+will override the position of the export filename in the exported model filenames.
+
+For example, if you have `detail-0` as the child of `duhiky-lod0`, the exported model
+for `detail-0` will be named `duhiky_Mything.iff`, whereas it would otherwise be
+named `Mything_foo.iff` if the object named `detail-0` had been named `foo-lod0`.
 
 Customizing Model Metadata
 --------------------------
 
 There are several customizations you can make to your model using empty objects
 parented to LOD objects and object custom properties.
+
+![Custom properties](images/CustomProperties_b.png)
 
 ### LOD Ranges ###
 To customize the range that a particular LOD is visible at, you can either:
@@ -40,15 +50,18 @@ To customize the range that a particular LOD is visible at, you can either:
 
 A few things to note:
 
-1. If the LOD range has a decimal point, remember to replace the point with a
-   comma! For example, the name of a LOD range object where the LOD range is
-   300.5 should be `drange=300,5`.
+1. If you are using an empty `drange` object, and the LOD range has a decimal
+   point, remember to replace the point with a comma! For example, the name
+   of a LOD range object where the LOD range is 300.5 should be `drange=300,5`.
 
    I've set things up this way because Blender likes to stick `.000` or `.001`
    at the end of the names of objects with conflicting names. Any such suffixes
    are discarded.
 
-2. The `drange` custom property takes precedence over any LOD range objects that
+2. You do not have to use a comma in place of the decimal point if you are using
+   the `drange` custom property to set the LOD range for a particular LOD.
+
+3. The `drange` custom property takes precedence over any LOD range objects that
    are parented to a particular LOD. So, if you have an object named `Duhiky-lod1`
    with both a `drange` custom property and a child object named `drange=300,5`,
    the value of the `drange` custom property will be used rather than the drange
@@ -80,6 +93,10 @@ model(s) match the orientation of your hardpoint object as closely as possible.
 If you are using "Arrows" as the hardpoint object's display mode, the "Y" arrow
 should match the forward orientation of the hardpoint, and the "Z" arrow should
 match the upward orientation of the hardpoint.
+
+Wing Blender also ensures there are no hardpoints with conflicting names on
+the same model, and it will give you an error if it detects a hardpoint name
+conflict.
 
 Hardpoints from all LODs are included in the exported model(s). If a hardpoint
 object is hidden, it will not be included in the exported model(s). Like
