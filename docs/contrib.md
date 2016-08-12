@@ -32,4 +32,4 @@ Development
 -----------
 
 If you want to contribute to this project, get the latest development version
-of the code, and check out the issues page, or the [Wing Blender forum thread]() on WC CIC.
+of the code, and check out the issues page, or the [Wing Blender forum thread](http://www.wcnews.com/chatzone/threads/wing-blender-wcp-so-blender-plugin.24258/) on WC CIC.
