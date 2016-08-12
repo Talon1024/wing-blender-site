@@ -5,8 +5,14 @@ Wing Blender 2.0 adds many new features for exporting and customizing models.
 Now, modders can export multiple models from one Blender file, and do even more
 customization than what was previously possible.
 
-Setting up a model
-------------------
+Deciding what to export
+-----------------------
+
+Modders can now decide to export only the object they have selected, or every valid object in the scene root.
+
+If the "Export only active object" option is enabled in the export menu, Wing Blender will only export the selected object and valid objects that are parented to either the active object, or one of its hardpoints.
+
+If this option is not enabled in the export menu, every valid object in the scene root, and their children, and other valid objects that are children of their hardpoints will be exported.
 
 In order for a model to be considered valid for export, it must meet these criteria:
 
@@ -16,6 +22,9 @@ In order for a model to be considered valid for export, it must meet these crite
 4. All LODs of the model must be named `detail-X`, `detailX`, or `Y-lodX`,
    where X is the LOD level of the object, and Y is the name of the object.
 5. All LODs of the model must have the same parent.
+
+Model LOD detection
+-------------------
 
 If you choose to export only the active object, the active object's name will be
 checked to see if it has a `detail-x` or `Y-lodX` name scheme. If it does, it is used
